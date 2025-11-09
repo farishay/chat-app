@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="chat">
+    <div class="main-wrapper">
+      <!-- Left Panel -->
+      <div class="left-panel">
+        <div class="coffee-illustration">
+          <!-- <img src="./hot-coffee.gif" alt="Coffee illustration" class="coffee-img" /> -->
+          <h2>FIND YOUR COZY
+             CHAT SPACE </h2>
+          <p>Where warm words brew stronger bonds, each message carries a touch of warmth, a spark of connection, and a little moment of joy. Here, conversations become memories, laughter becomes shared comfort, and every word brings hearts closer in a cozy corner of understanding." 
+          </p>
+          <button class="logout-btn" id="logout">Logout</button>
+        </div>
+      </div>
+
+      <!-- Right Chat Container -->
+      <div class="chat-container">
+        <header class="chat-header">
+          <h3>Your Space</h3>
+          <div class="header-actions">
+            <div class="theme-toggle" id="themeToggle"></div>
+          </div>
+        </header>
+
+        <main id="chat-box" class="chat-box">
+          <!-- Messages will appear here dynamically -->
+        </main>
+
+        <footer class="chat-input">
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Type a message..."
+          />
+          <button id="sendBtn">➤</button>
+        </footer>
+        
+      </div>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

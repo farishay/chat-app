@@ -1,0 +1,621 @@
+/* =========================================
+   🌿 Vintage, Cozy, Professional Chat Theme
+   ========================================= */
+
+/* ---------- Global Styles ---------- */
+body {
+  background: url("./aesthetic.gif") center/cover no-repeat fixed;
+  color: #3e2723;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  margin: 0;
+  min-height: 100vh;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Icons & Small Elements ---------- */
+.coffee-gif {
+  margin: 0 auto;
+  width: 40px;
+  height: auto;
+}
+
+.google-icon {
+  margin: 0 auto;
+  width: 20px;
+  height: auto;
+}
+
+/* ---------- Containers ---------- */
+#container,
+.chat-container {
+  border-radius: 18px;
+  border: 2px solid #d1bfa3;
+  background: transparent;
+  border-radius: 20px;
+  box-shadow: 0 12px 48px #fdf6e3;
+  width: 40%;
+  max-width: 800px;
+
+  backdrop-filter: blur(8px);
+}
+.index-container{
+  border-radius: 18px;
+  border: 2px solid #d1bfa3;
+  background: transparent !important;
+  border-radius: 20px;
+  box-shadow: 0 12px 48px #fdf6e3;
+  width: 40%;
+  max-width: 800px;
+
+  backdrop-filter: blur(8px);
+}
+#container {
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #b89872;
+  background: url("https://images.unsplash.com/photo-1690983327126-d0f28eaa4fdb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29mZmVlJTIwcG9zdGVyfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000");
+ 
+}
+#container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  gap: 10px;
+}
+#container div button {
+  width: 100% !important;
+  margin: 0 !important;
+}
+#container input{
+  
+  margin-top: 20px !important;
+    padding: 10px 5px !important;
+    text-align: left !important;
+    padding-right: 90% !important;
+    border: 2px solid #d1bfa3 !important;
+    border-radius: 10px !important;
+}
+#container input:hover{
+  border: 2px solid #6d4c41 !important;
+
+}
+#container #username{
+  margin-top: 20px !important;
+    padding: 10px 5px !important;
+    text-align: left !important;
+    padding-right: 90% !important;
+    border: 2px solid #d1bfa3 !important;
+    border-radius: 10px !important;
+}
+/* ---------- Headings ---------- */
+h1,
+h3 {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  color: #3e2723;
+  margin-bottom: 18px;
+  text-shadow: 1px 1px 0 #d7ccc8;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+h1{
+  font-size: 50px;
+}
+.index-text {
+  color:#fffdf9 !important;
+  font-size: 17px;
+  margin-top: 18px;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+}
+
+/* ---------- Buttons ---------- */
+button {
+  display: block;
+  margin: 20px auto; /* horizontally center */
+  background: #fdf6e3;
+  color: #3e2723;
+  border: 1px solid #d7ccc8;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(62, 39, 35, 0.1);
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
+  text-align: center;
+}
+
+button:hover,
+.theme-toggle.active {
+  background: #3e2723;
+  color: #fdf6e3;
+  border-color: #3e2723;
+}
+
+/* ---------- Chat Header ---------- */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* =========================================
+   🪶 Layout: Split Panels
+   ========================================= */
+
+/* ---------- Base Layout ---------- */
+body {
+  background: url("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1c4acd47436539.587a66153ef31.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* ---------- Main Wrapper ---------- */
+.main-wrapper {
+  width: 900px;
+  height: 540px;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fffdf9;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Left Panel ---------- */
+.left-panel {
+  flex: 1;
+  background: #fdf6e3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  padding: 40px;
+}
+/* ---------- Left Panel Content ---------- */
+
+.left-panel h2 {
+  font-size: 1.8em;
+  color: #3e2723;
+  margin-bottom: 10px;
+  z-index: 3;
+}
+
+.left-panel p {
+  color: #6d4c41;
+  font-size: 1em;
+  max-width: 240px;
+  z-index: 3;
+}
+
+/* ---------- Right Chat Container ---------- */
+.chat-container {
+  flex: 1.2;
+
+  color: #fffdf9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* padding: 40px 35px; */
+  position: relative;
+  z-index: 5;
+}
+
+/* =========================================
+   💬 Chat Section
+   ========================================= */
+/* ---------- Main Layout ---------- */
+.main-wrapper {
+  display: flex;
+  height: 80vh;
+
+  font-family: "Poppins", sans-serif;
+}
+
+/* ---------- Left Panel ---------- */
+
+.left-panel {
+  flex: 1;
+  background: linear-gradient(rgba(253, 246, 227, 0.6), rgba(62, 47, 28, 0.6)),
+    url("./aesthetic.gif") center center / cover no-repeat; /* 👈 gradient + image same line */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ---------- Coffee Text ---------- */
+.left-panel h2 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 30px;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+}
+.left-panel p {
+  font-size: 1rem;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  color: #fff;
+  text-align: left;
+  max-width: 500px;
+}
+.coffee-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 18px auto;
+}
+
+/* ---------- Logout Button Bottom ---------- */
+.left-panel #logout-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3e2f1c;
+  color: #f7f3e9;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.left-panel #logout-btn:hover {
+  background: #5a4634;
+}
+
+/* ---------- Chat Container ---------- */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fffdf9;
+  border-left: 2px solid #e0c9a6;
+}
+
+/* ---------- Header ---------- */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e7d8c2;
+  padding: 5px;
+  border-bottom: 2px solid #d3b893;
+}
+.chat-header h3 {
+  color: #3e2f1c;
+}
+
+/* ---------- Chat Box ---------- */
+.chat-box {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #fffdf9;
+}
+.chat-box::-webkit-scrollbar {
+  width: 8px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+  background: #b89872;
+  border-radius: 5px;
+}
+
+/* ---------- Input Section ---------- */
+.chat-input {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.chat-input input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #d1bfa3;
+  border-radius: 25px;
+  outline: none;
+  background-color: #fffaf3;
+}
+.chat-input button {
+  background-color: #3e2f1c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.chat-input button:hover {
+  background-color: #5a4634;
+}
+
+/* ---------- Dark Mode ---------- */
+body.dark-mode {
+  background-color: #c19a6b;
+  background: url(https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1c4acd47436539.587a66153ef31.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body.dark-mode .chat-container {
+  background-color: black;
+}
+
+body.dark-mode .chat-box {
+  background-color: black;
+  color: #f5f5f5;
+}
+body.dark-mode .chat-input {
+  background-color: black;
+}
+body.dark-mode input {
+  background-color: #4a4842;
+  color: #f5f5f5;
+  border: 1px solid #726c61;
+}
+body.dark-mode button {
+  background-color: #a9825f;
+}
+body.dark-mode #logout {
+  background-color: #a9825f;
+}
+body.dark-mode .message {
+  background: #3a3a3a;
+  color: #fff;
+}
+body.dark-mode .message.sent {
+  background: #6d4c41;
+  color: #fdf6e3;
+}
+
+/* ---------- Theme Toggle ---------- */
+.theme-toggle {
+  width: 35px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #c9b69f;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.theme-toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+body.dark-mode .theme-toggle {
+  background-color: #7c6349;
+}
+body.dark-mode .theme-toggle::after {
+  left: 18px;
+}
+
+/* ---------- Smooth Animations ---------- */
+* {
+  transition: all 0.3s ease;
+}
+/* =========================================
+   💭 Chat Messages & Input
+   ========================================= */
+/* ---------- Chat Box ---------- */
+.chat-box {
+  padding: 16px;
+  height: 320px;
+  overflow-y: auto;
+}
+/* ---------- Messages ---------- */
+.message {
+  background: #c19a6b;
+  color: #3e2723;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  max-width: 75%;
+  word-break: break-word;
+  position: relative;
+}
+
+.message.sent {
+  margin-left: auto;
+  background: #6d4c41;
+  color: #fdf6e3;
+}
+
+/* ---------- Input Section ---------- */
+.chat-input {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+#messageInput {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background: #e7d8c2;
+  color: #fff;
+  font-size: 1em;
+}
+
+#messageInput:focus {
+  outline: 2px solid #d7ccc8;
+}
+
+#sendBtn {
+  padding: 0 10px;
+  background-color: #e7d8c2;
+  border-radius: 20px;
+  color: #3e2723;
+  font-size: 1.3em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#sendBtn:hover {
+  background: #6d4c41;
+  color: #fff;
+}
+
+/* ---------- Scrollbar ---------- */
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+  background: #6d4c41;
+  border-radius: 8px;
+}
+
+/* =========================================
+   📱 Responsive Design
+   ========================================= */
+@media (max-width: 768px) {
+  .main-wrapper {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+  }
+
+  .left-panel::after {
+    display: none;
+  }
+
+  .left-panel,
+  .chat-container {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .chat-box {
+    height: 280px;
+  }
+}
+
+/* =========================================
+   🌸 Message Details & Buttons
+   ========================================= */
+.msg-top {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0 auto;
+}
+
+.user-dp-small {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #e7d8c2;
+  object-fit: cover;
+}
+
+.msg-user {
+  font-weight: bold;
+  color: #e7d8c2;
+  font-size: 14px;
+}
+
+.msg-time {
+  font-size: 0.85em;
+  color: #e7d8c2;
+  margin-left: auto;
+}
+
+.msg-content {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.msg-actions {
+  position: absolute;
+  bottom: 9px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.message:hover .msg-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.edit,
+.delete {
+  background: transparent;
+  color: #3e2723;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 2px 6px;
+}
+
+.edit:hover,
+.delete:hover {
+  color: #6d4c41;
+}
+
+/* =========================================
+   🌿 Aesthetic Scrollbar
+   ========================================= */
+.chat-box::-webkit-scrollbar {
+  width: 8px;
+  background: #d7ccc8;
+}
+.chat-box::-webkit-scrollbar-thumb {
+  background: #6d4c41;
+  border-radius: 8px;
+}
+
+/* =========================================
+   🔘 Alignment Fix
+   ========================================= */
+#container button,
+.chat-container button {
+  align-self: center;
+}
+
+#container p{
+text-align: center;
+    color: #3e2723;
+    font-size: 20px;
+}
