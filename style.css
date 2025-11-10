@@ -10,6 +10,7 @@ body {
   margin: 0;
   min-height: 100vh;
   letter-spacing: 0.02em;
+  overflow-y: hidden;
 }
 
 /* ---------- Icons & Small Elements ---------- */
@@ -19,13 +20,22 @@ body {
   height: auto;
 }
 
+#container #google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .google-icon {
-  margin: 0 auto;
   width: 20px;
   height: auto;
 }
 
 /* ---------- Containers ---------- */
+.chat-container {
+  overflow-y: scroll;
+}
 #container,
 .chat-container {
   border-radius: 18px;
@@ -38,7 +48,7 @@ body {
 
   backdrop-filter: blur(8px);
 }
-.index-container{
+.index-container {
   border-radius: 18px;
   border: 2px solid #d1bfa3;
   background: transparent !important;
@@ -56,7 +66,6 @@ body {
   justify-content: space-around;
   background-color: #b89872;
   background: url("https://images.unsplash.com/photo-1690983327126-d0f28eaa4fdb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29mZmVlJTIwcG9zdGVyfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000");
- 
 }
 #container div {
   display: flex;
@@ -71,27 +80,19 @@ body {
   width: 100% !important;
   margin: 0 !important;
 }
-#container input{
-  
-  margin-top: 20px !important;
-    padding: 10px 5px !important;
-    text-align: left !important;
-    padding-right: 90% !important;
-    border: 2px solid #d1bfa3 !important;
-    border-radius: 10px !important;
+#container input {
+  margin-top: 10px !important;
+  padding: 10px 5px !important;
+  text-align: left !important;
+  width: 100% !important;
+  height: 20px;
+  border: 2px solid #d1bfa3 !important;
+  border-radius: 8px !important;
 }
-#container input:hover{
+#container input:hover {
   border: 2px solid #6d4c41 !important;
+}
 
-}
-#container #username{
-  margin-top: 20px !important;
-    padding: 10px 5px !important;
-    text-align: left !important;
-    padding-right: 90% !important;
-    border: 2px solid #d1bfa3 !important;
-    border-radius: 10px !important;
-}
 /* ---------- Headings ---------- */
 h1,
 h3 {
@@ -104,11 +105,11 @@ h3 {
   letter-spacing: 0.04em;
   text-align: center;
 }
-h1{
+h1 {
   font-size: 50px;
 }
 .index-text {
-  color:#fffdf9 !important;
+  color: #fffdf9 !important;
   font-size: 17px;
   margin-top: 18px;
   text-align: center;
@@ -152,7 +153,9 @@ button:hover,
   gap: 10px;
   align-items: center;
 }
-
+.header-actions > #logout {
+  display: none;
+}
 /* =========================================
    🪶 Layout: Split Panels
    ========================================= */
@@ -492,6 +495,9 @@ body.dark-mode .theme-toggle::after {
   background: #6d4c41;
   color: #fff;
 }
+.header-actions #logout-2 {
+  display: none;
+}
 
 /* ---------- Scrollbar ---------- */
 .chat-box::-webkit-scrollbar {
@@ -503,28 +509,84 @@ body.dark-mode .theme-toggle::after {
 }
 
 /* =========================================
-   📱 Responsive Design
+   📱 Perfect Responsive Design
    ========================================= */
-@media (max-width: 768px) {
+
+/* For tablets and smaller desktops */
+@media (max-width: 1024px) {
   .main-wrapper {
-    flex-direction: column;
     width: 95%;
     height: auto;
-  }
-
-  .left-panel::after {
-    display: none;
+    max-height: 90vh;
   }
 
   .left-panel,
   .chat-container {
+    padding: 30px 25px;
+  }
+}
+
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  body {
+    display: block !important;
+    height: auto;
+    min-height: 100vh;
+    padding: 20px 10px !important;
+  }
+
+  #container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #container h1 {
+    font-size: 2.3rem;
+  }
+  #container div {
+    width: 80% !important;
+  }
+  .main-wrapper {
+    flex-direction: column;
     width: 100%;
     height: auto;
-    border-radius: 0;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .left-panel {
+    display: none;
+  }
+
+  .chat-container {
+    width: 100%;
+    padding: 0 !important;
+    border-radius: 0 0 20px 20px;
+    border-left: 2px solid #e0c9a6;
+    border-top: none;
   }
 
   .chat-box {
-    height: 280px;
+    height: 300px;
+    min-height: 300px;
+  }
+  .header-actions > #logout {
+    display: block;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 50px;
+  }
+  .header-actions #logout-2 {
+    display:block;
+  }
+}
+
+/* For ultra-wide screens */
+@media (min-width: 1440px) {
+  .main-wrapper {
+    width: 1200px;
+    height: 700px;
   }
 }
 
@@ -614,8 +676,8 @@ body.dark-mode .theme-toggle::after {
   align-self: center;
 }
 
-#container p{
-text-align: center;
-    color: #3e2723;
-    font-size: 20px;
+#container p {
+  text-align: center;
+  color: #3e2723;
+  font-size: 20px;
 }

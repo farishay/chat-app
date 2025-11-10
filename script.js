@@ -46,6 +46,8 @@ document.getElementById("signup")?.addEventListener("click", async () => {
 
   try {
     await createUserWithEmailAndPassword(auth, email, password);
+    localStorage.setItem("username", email.split("@")[0]);
+    localStorage.setItem("userDp", ""); // ensure no Google image remains
     alert("SignUp Successful!");
     window.location.href = "user.html";
   } catch (err) {
@@ -62,6 +64,8 @@ document.getElementById("login")?.addEventListener("click", async () => {
 
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    localStorage.setItem("username", email.split("@")[0]);
+    localStorage.setItem("userDp", ""); // clear any old dp
     alert("Login Successful!");
     window.location.href = "user.html";
   } catch (err) {
@@ -75,7 +79,7 @@ document.getElementById("google-btn")?.addEventListener("click", async () => {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     localStorage.setItem("username", user.displayName || "Anonymous");
-    localStorage.setItem("userDp", user.photoURL || "./me.jpeg");
+    localStorage.setItem("userDp", user.photoURL || "");
     alert("Google Login Successful!");
     window.location.href = "chat.html";
   } catch (err) {
@@ -87,6 +91,7 @@ document.getElementById("google-btn")?.addEventListener("click", async () => {
 document.getElementById("logout")?.addEventListener("click", async () => {
   try {
     await signOut(auth);
+    localStorage.clear();
     alert("Logged Out!");
     window.location.href = "index.html";
   } catch (err) {
@@ -94,24 +99,35 @@ document.getElementById("logout")?.addEventListener("click", async () => {
   }
 });
 
+// logout-2---------------------
+document.getElementById("logout-2")?.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    localStorage.clear();
+    alert("Logged Out!");
+    window.location.href = "index.html";
+  } catch (err) {
+    alert(err.message);
+  }
+});
 
 // ---------------- USERNAME BUTTON ----------------
 document.getElementById("user-btn")?.addEventListener("click", () => {
   const username = document.getElementById("username").value.trim();
   if (!username) return alert("Please enter username!");
   localStorage.setItem("username", username);
-  localStorage.setItem("userDp", "./me.jpeg");
+  localStorage.setItem("userDp", ""); // no dp for anonymous user
   window.location.href = "chat.html";
 });
 
 // ---------------- REALTIME CHAT ----------------
 const username = localStorage.getItem("username") || "Anonymous";
-const userDp = localStorage.getItem("userDp") || "./me.jpeg";
+const userDp = localStorage.getItem("userDp")?.trim() || "";
 const chatBox = document.getElementById("chat-box");
 const sendBtn = document.getElementById("sendBtn");
 const messageInput = document.getElementById("messageInput");
 
-// send message
+// ---------------- SEND MESSAGE ----------------
 sendBtn?.addEventListener("click", sendMessage);
 messageInput?.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
@@ -125,7 +141,10 @@ function sendMessage() {
     user: username,
     dp: userDp,
     text,
-    time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    time: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
     edited: false,
     deleted: false,
   };
@@ -134,14 +153,14 @@ function sendMessage() {
   messageInput.value = "";
 }
 
-// receive messages
+// ---------------- RECEIVE MESSAGES ----------------
 onChildAdded(messagesRef, (snapshot) => {
   const msg = snapshot.val();
   const key = snapshot.key;
   renderMessage(msg, key);
 });
 
-// reflect updates realtime
+// ---------------- REFLECT UPDATES REALTIME ----------------
 onChildChanged(messagesRef, (snapshot) => {
   const msg = snapshot.val();
   const key = snapshot.key;
@@ -152,16 +171,30 @@ onChildChanged(messagesRef, (snapshot) => {
   }
 });
 
-// render message
+// ---------------- RENDER MESSAGE ----------------
 function renderMessage(msg, key) {
   const div = document.createElement("div");
   div.classList.add("message");
   div.classList.add(msg.user === username ? "sent" : "received");
   div.dataset.key = key;
 
+  // --- Generate initials safely ---
+  let initials = "A";
+  if (msg.user && typeof msg.user === "string") {
+    const parts = msg.user.trim().split(" ");
+    if (parts.length === 1) initials = parts[0][0]?.toUpperCase() || "A";
+    else initials = (parts[0][0] + parts[1][0])?.toUpperCase();
+  }
+
+  const hasValidDp = msg.dp && msg.dp !== "null" && msg.dp.trim() !== "";
+
   div.innerHTML = `
     <div class="msg-top">
-      <img src="${msg.dp}" class="user-dp-small" alt="dp">
+      ${
+        hasValidDp
+          ? `<img src="${msg.dp}" class="user-dp-small" alt="dp">`
+          : `<span class="user-initials">${initials}</span>`
+      }
       <span class="msg-user">${msg.user}</span>
       <span class="msg-time">${msg.time}</span>
     </div>
@@ -180,12 +213,16 @@ function renderMessage(msg, key) {
   chatBox.scrollTop = chatBox.scrollHeight;
 
   if (msg.user === username) {
-    div.querySelector(".edit")?.addEventListener("click", () => editMessage(key));
-    div.querySelector(".delete")?.addEventListener("click", () => deleteMessage(key));
+    div
+      .querySelector(".edit")
+      ?.addEventListener("click", () => editMessage(key));
+    div
+      .querySelector(".delete")
+      ?.addEventListener("click", () => deleteMessage(key));
   }
 }
 
-// edit message
+// ---------------- EDIT MESSAGE ----------------
 function editMessage(key) {
   const msgNode = document.querySelector(`[data-key="${key}"] .msg-content`);
   const currentText = msgNode.textContent.replace(" (edited)", "");
@@ -198,7 +235,7 @@ function editMessage(key) {
   });
 }
 
-// delete message
+// ---------------- DELETE MESSAGE ----------------
 function deleteMessage(key) {
   const confirmDelete = confirm("Delete this message?");
   if (!confirmDelete) return;
@@ -209,15 +246,14 @@ function deleteMessage(key) {
   });
 }
 
- // 🌙 Day/Night Theme Toggle
+// ---------------- THEME TOGGLE ----------------
 const themeToggle = document.getElementById("themeToggle");
-
-themeToggle.addEventListener("click", () => {
+themeToggle?.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
   themeToggle.classList.toggle("active");
 });
 
-// Dark mode CSS
+// ---------------- DARK MODE CSS ----------------
 const darkStyle = document.createElement("style");
 darkStyle.innerHTML = `
   .dark-mode {
@@ -235,6 +271,27 @@ darkStyle.innerHTML = `
   .dark-mode .message {
     background: #444;
     color: white;
+  }
+  .user-initials {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #795548;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-right: 6px;
+  }
+  .user-dp-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 6px;
   }
 `;
 document.head.appendChild(darkStyle);
